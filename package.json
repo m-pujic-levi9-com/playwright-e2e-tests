@@ -43,7 +43,7 @@
     "globals": "^16.2.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.0.0",
-    "monocart-reporter": "^2.9.19",
+    "monocart-reporter": "^2.9.20",
     "prettier": "^3.5.3",
     "rimraf": "^6.0.1",
     "tsx": "^4.19.4",
