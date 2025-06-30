@@ -44,7 +44,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "monocart-reporter": "^2.9.20",
-    "prettier": "^3.6.0",
+    "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
