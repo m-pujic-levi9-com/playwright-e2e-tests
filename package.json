@@ -34,7 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^8.34.0",
     "@typescript-eslint/parser": "^8.35.0",
     "allure-commandline": "^2.34.0",
-    "allure-playwright": "^3.2.2",
+    "allure-playwright": "^3.3.0",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-playwright": "^2.2.0",
