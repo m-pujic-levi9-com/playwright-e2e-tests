@@ -36,7 +36,7 @@
     "allure-commandline": "^2.34.1",
     "allure-playwright": "^3.3.0",
     "eslint": "^9.32.0",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-playwright": "^2.2.1",
     "eslint-plugin-prettier": "^5.5.3",
     "eslint-plugin-promise": "^7.2.1",
