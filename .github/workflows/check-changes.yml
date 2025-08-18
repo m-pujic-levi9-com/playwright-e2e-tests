@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Checkout Repository
         id: checkout-repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Force a non-shallow checkout, so that we can reference $GITHUB_BASE_REF (needed for the --only-changed option to work)
           # See https://github.com/actions/checkout for more details.
@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: Checkout Repository
         id: checkout-repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # Force a non-shallow checkout, so that we can reference $GITHUB_BASE_REF (needed for the --only-changed option to work)
           # See https://github.com/actions/checkout for more details.
