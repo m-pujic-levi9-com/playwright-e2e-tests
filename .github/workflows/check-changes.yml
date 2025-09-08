@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 0
       - name: Setup Node
         id: setup-node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
       - name: Cache Node Modules
@@ -102,7 +102,7 @@ jobs:
           fetch-depth: 0
       - name: Setup Node
         id: setup-node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
       - name: Cache Node Modules
