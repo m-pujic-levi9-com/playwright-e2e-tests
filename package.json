@@ -45,7 +45,7 @@
     "lint-staged": "^16.2.6",
     "monocart-reporter": "^2.9.23",
     "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
+    "rimraf": "^6.1.0",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
   }
