@@ -46,7 +46,7 @@
     "monocart-reporter": "^2.9.23",
     "prettier": "^3.6.2",
     "rimraf": "^6.1.2",
-    "tsx": "^4.20.6",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }
