@@ -255,7 +255,7 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Upload Pages Artifact
         id: upload-pages-artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: reports/
       - name: Deploy to GitHub Pages
