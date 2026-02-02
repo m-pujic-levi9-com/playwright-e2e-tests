@@ -202,7 +202,7 @@ jobs:
           key: playwright-${{ hashFiles('package-lock.json') }}
       - name: Download Playwright Blob Reports
         id: download-blob-reports
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           path: playwright-all-blob-reports
           pattern: playwright-blob-report-*
@@ -212,12 +212,12 @@ jobs:
         run: npx playwright merge-reports --reporter html ./playwright-all-blob-reports
       - name: Download Monocart Reports
         id: download-monocart-reports
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           pattern: monocart-report-*
       - name: Download Test Results
         id: download-test-results
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           path: merged-monocart-report/data
           pattern: test-results-*
@@ -229,7 +229,7 @@ jobs:
           npm run merge:report:monocart
       - name: Download Allure Results
         id: download-allure-results
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           path: playwright-allure-results
           pattern: playwright-allure-results-*
