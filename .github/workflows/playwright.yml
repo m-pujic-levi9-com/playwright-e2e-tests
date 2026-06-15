@@ -252,7 +252,7 @@ jobs:
         shell: bash
       - name: Setup Pages
         id: setup-pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Upload Pages Artifact
         id: upload-pages-artifact
         uses: actions/upload-pages-artifact@v4
