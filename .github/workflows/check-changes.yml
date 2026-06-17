@@ -30,14 +30,14 @@ jobs:
           node-version: 20
       - name: Cache Node Modules
         id: cache-node-modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
       - name: Cache Playwright Binaries
         id: cache-playwright
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.cache/ms-playwright
@@ -107,14 +107,14 @@ jobs:
           node-version: 20
       - name: Cache Node Modules
         id: cache-node-modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             node_modules
           key: modules-${{ hashFiles('package-lock.json') }}
       - name: Cache Playwright Binaries
         id: cache-playwright
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.cache/ms-playwright
