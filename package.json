@@ -32,7 +32,7 @@
     "@playwright/test": "^1.61.0",
     "@types/node": "^26.0.1",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
-    "@typescript-eslint/parser": "^8.61.1",
+    "@typescript-eslint/parser": "^8.62.0",
     "allure-commandline": "^2.43.0",
     "allure-playwright": "^3.10.0",
     "eslint": "^10.6.0",
