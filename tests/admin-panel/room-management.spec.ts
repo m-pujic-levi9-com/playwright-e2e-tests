@@ -3,10 +3,10 @@ import { RoomAmenities, getRoomDetailsFromAmenities, RoomType } from '../../page
 import { Messages } from '../../utils/messages';
 
 test.describe('Room Management Tests', () => {
-  test.beforeEach(async ({ adminPage, header, baseURL }) => {
+  test.beforeEach(async ({ adminPage, header, baseURL, adminUsername, adminPassword }) => {
     await adminPage.hideBanner(baseURL);
     await adminPage.goto();
-    await adminPage.login('admin', 'password');
+    await adminPage.login(adminUsername, adminPassword);
     await expect(header.logoutLink, 'Administrator is logged in').toBeVisible();
   });
 
@@ -21,7 +21,7 @@ test.describe('Room Management Tests', () => {
     test(`User must be able to create new ${room[1]} room named ${room[0]} by filling up all mandatory fields @sanity @management @room-management`, async ({
       roomsPage,
       page,
-      authedRoomApi
+      roomApi
     }) => {
       const name = room[0];
       const type = room[1];
@@ -42,7 +42,7 @@ test.describe('Room Management Tests', () => {
       );
       await expect(roomRecord.locator('p[id*=roomPrice]'), `Room ${name} has correct price: ${priceString}`).toContainText(priceString);
       await expect(roomRecord.locator('p[id*=details]'), `Room ${name} has correct details: ${amenitiesString}`).toContainText(amenitiesString);
-      await authedRoomApi.deleteAllRooms(name);
+      await roomApi.deleteAllRooms(name);
     });
   }
 

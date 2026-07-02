@@ -46,10 +46,8 @@ export class RoomApi extends BaseApi {
     await test.step(`Delete all rooms with name: '${roomName}'`, async () => {
       const getRoomsResponse = await this.request.get(`${path}/`);
       expect(getRoomsResponse.ok(), 'All rooms are fetched').toBeTruthy();
-      const getRoomsData = JSON.parse(await getRoomsResponse.text());
-      const allRooms = getRoomsData.rooms;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const filteredRoomsByName = allRooms.filter((room: any) => room.roomName == roomName);
+      const { rooms: allRooms } = await this.getJson<{ rooms: { roomid: number; roomName: string }[] }>(getRoomsResponse);
+      const filteredRoomsByName = allRooms.filter((room) => room.roomName == roomName);
       for (const room of filteredRoomsByName) await this.deleteRoom(room.roomid);
     });
   }

@@ -18,15 +18,15 @@ test.describe('Room Booking Tests', () => {
     views: faker.datatype.boolean()
   };
 
-  test.beforeEach(async ({ frontPage, baseURL, authedRoomApi }) => {
+  test.beforeEach(async ({ frontPage, baseURL, roomApi }) => {
     await frontPage.hideBanner(baseURL);
-    await authedRoomApi.createRoom(roomName, roomType, roomIsAccessible, roomPrice, roomAmenities);
+    await roomApi.createRoom(roomName, roomType, roomIsAccessible, roomPrice, roomAmenities);
 
     await frontPage.goto();
   });
 
-  test.afterEach(async ({ authedRoomApi }) => {
-    await authedRoomApi.deleteAllRooms(roomName);
+  test.afterEach(async ({ roomApi }) => {
+    await roomApi.deleteAllRooms(roomName);
   });
 
   test('Visitor must be able to book a room for available dates by filling up all mandatory fields @sanity @booking', async ({ frontPage }) => {

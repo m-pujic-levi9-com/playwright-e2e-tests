@@ -19,7 +19,7 @@ export class BookingApi extends BaseApi {
     await test.step(`Delete all Bookings for room id: ${roomId}`, async () => {
       const response = await this.request.get(`${path}/?roomid=${roomId}`);
       expect(response.ok(), `All Bookings for room id: ${roomId} are fetched`).toBeTruthy();
-      const data = JSON.parse(await response.text());
+      const data = await this.getJson<{ bookings: { bookingid: number }[] }>(response);
       for (const booking of data.bookings) await this.deleteBooking(booking.bookingid);
     });
   }

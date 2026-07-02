@@ -7,8 +7,13 @@ test.describe('Login Tests', () => {
     await adminPage.goto();
   });
 
-  test('Administrator is able to login with correct username and password @sanity @login', async ({ adminPage, header }) => {
-    await adminPage.login('admin', 'password');
+  test('Administrator is able to login with correct username and password @sanity @login', async ({
+    adminPage,
+    header,
+    adminUsername,
+    adminPassword
+  }) => {
+    await adminPage.login(adminUsername, adminPassword);
     await expect(header.roomsLink, 'Administrator logged in!').toBeVisible();
   });
 

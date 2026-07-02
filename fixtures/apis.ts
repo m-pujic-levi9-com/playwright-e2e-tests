@@ -1,23 +1,19 @@
-import { test as base, APIRequestContext } from '@playwright/test';
-import { AuthApi } from '../apis/AuthApi';
+import { APIRequestContext } from '@playwright/test';
+import { test as credentialOptions } from './credentials';
 import { BookingApi } from '../apis/BookingApi';
 import { RoomApi } from '../apis/RoomApi';
 
 type ApiFixtures = {
   authedRequest: APIRequestContext;
-  authApi: AuthApi;
   bookingApi: BookingApi;
   roomApi: RoomApi;
-  authedAuthApi: AuthApi;
-  authedBookingApi: BookingApi;
-  authedRoomApi: RoomApi;
 };
 
-export const test = base.extend<ApiFixtures>({
-  authedRequest: async ({ playwright, baseURL }, use) => {
+export const test = credentialOptions.extend<ApiFixtures>({
+  authedRequest: async ({ playwright, baseURL, adminUsername, adminPassword }, use) => {
     const tempContext = await playwright.request.newContext({ baseURL });
     const response = await tempContext.post('/api/auth/login', {
-      data: { username: 'admin', password: 'password' }
+      data: { username: adminUsername, password: adminPassword }
     });
     const { token } = await response.json();
     await tempContext.dispose();
@@ -45,19 +41,10 @@ export const test = base.extend<ApiFixtures>({
     await use(authedContext);
     await authedContext.dispose();
   },
-  authApi: async ({ request }, use) => {
-    await use(new AuthApi(request));
-  },
-  bookingApi: async ({ request }, use) => {
-    await use(new BookingApi(request));
-  },
-  roomApi: async ({ request }, use) => {
-    await use(new RoomApi(request));
-  },
-  authedBookingApi: async ({ authedRequest }, use) => {
+  bookingApi: async ({ authedRequest }, use) => {
     await use(new BookingApi(authedRequest));
   },
-  authedRoomApi: async ({ authedRequest }, use) => {
+  roomApi: async ({ authedRequest }, use) => {
     await use(new RoomApi(authedRequest));
   }
 });
