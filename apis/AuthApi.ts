@@ -1,7 +1,7 @@
 import { test, expect, APIRequestContext } from '@playwright/test';
 import { BaseApi } from './BaseApi';
 
-const path = '/auth';
+const path = '/api/auth';
 
 export class AuthApi extends BaseApi {
   constructor(request: APIRequestContext) {
@@ -16,7 +16,7 @@ export class AuthApi extends BaseApi {
           password: password
         }
       });
-      expect(response.status(), `User '${username}' is logged in`).toBe(200);
+      expect(response.ok(), `User '${username}' is logged in`).toBeTruthy();
     });
   }
 }

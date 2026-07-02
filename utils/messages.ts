@@ -18,7 +18,7 @@ export const Messages = {
     phoneSize: 'size must be between 11 and 21'
   },
   contact: {
-    success: (name: string) => `Thanks for getting in touch ${name}`,
+    success: (name: string) => `Thanks for getting in touch ${name}!`,
     nameBlank: 'Name may not be blank',
     emailBlank: 'Email may not be blank',
     phoneBlank: 'Phone may not be blank',

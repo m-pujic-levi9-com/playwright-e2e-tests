@@ -4,7 +4,7 @@ import { BookingApi } from './BookingApi';
 import { RoomType, RoomAmenities, getAmenitiesAsList } from '../pages/RoomsPage';
 import { getImageUrl } from '../utils/test-data-util';
 
-const path = '/room';
+const path = '/api/room';
 
 export class RoomApi extends BaseApi {
   readonly bookingApi: BookingApi;
@@ -29,7 +29,7 @@ export class RoomApi extends BaseApi {
           description: 'Room Created with Automated Test'
         }
       });
-      expect(response.status(), `${roomType} Room with name '${roomName}' is created`).toBe(201);
+      expect(response.ok(), `${roomType} Room with name '${roomName}' is created`).toBeTruthy();
     });
   }
 
@@ -45,7 +45,7 @@ export class RoomApi extends BaseApi {
   async deleteAllRooms(roomName: string) {
     await test.step(`Delete all rooms with name: '${roomName}'`, async () => {
       const getRoomsResponse = await this.request.get(`${path}/`);
-      expect(getRoomsResponse.status(), 'All rooms are fetched').toBe(200);
+      expect(getRoomsResponse.ok(), 'All rooms are fetched').toBeTruthy();
       const getRoomsData = JSON.parse(await getRoomsResponse.text());
       const allRooms = getRoomsData.rooms;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

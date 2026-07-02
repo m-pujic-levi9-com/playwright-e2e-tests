@@ -24,7 +24,7 @@ export class FrontPage extends BasePage {
 
   constructor(page: Page) {
     super(page);
-    this.pageLocator = page.locator('.hotel-description');
+    this.pageLocator = page.getByText('Our Rooms', { exact: true });
 
     this.bookingFirstNameField = page.locator('input.room-firstname').last();
     this.bookingLastNameField = page.locator('input.room-lastname').last();
@@ -41,8 +41,8 @@ export class FrontPage extends BasePage {
     this.contactSubjectField = page.getByTestId('ContactSubject');
     this.contactDescriptionField = page.getByTestId('ContactDescription');
     this.contactSubmitButton = page.getByRole('button', { name: 'Submit' });
-    this.contactSuccessMessage = page.locator('div.contact h2');
-    this.contactErrorMessages = page.locator('div.contact .alert.alert-danger');
+    this.contactSuccessMessage = page.getByRole('heading', { name: 'Thanks for getting in touch' });
+    this.contactErrorMessages = page.locator('#contact div.alert.alert-danger');
   }
 
   async goto() {
