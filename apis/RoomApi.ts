@@ -26,7 +26,7 @@ export class RoomApi extends BaseApi {
           roomPrice: roomPrice.toString(),
           features: getAmenitiesAsList(roomAmenities),
           image: getImageUrl(roomType),
-          description: 'Room Created with Automated Test'
+          description: `Room ${roomName}; Created with Automated Test`
         }
       });
       expect(response.ok(), `${roomType} Room with name '${roomName}' is created`).toBeTruthy();

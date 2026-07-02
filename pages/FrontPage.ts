@@ -65,7 +65,7 @@ export class FrontPage extends BasePage {
 
   async clickBookThsRoomButton(roomName: string) {
     await test.step(`Click on Book this room button for Room named '${roomName}'`, async () => {
-      await this.page.locator(`//div[./div/img[contains(@alt,'${roomName}')]]//button`).last().click();
+      await this.page.locator(`//div[./div[@class='card-body']/*[contains(text(),'${roomName}')]]//a[.='Book now']`).click();
     });
   }
 
