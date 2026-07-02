@@ -18,7 +18,7 @@ export class Header extends BasePage {
     this.messagesLink = page.locator('[href*="#/admin/messages"]');
     this.unreadMessagesNumber = page.locator('a[href*="#/admin/messages"] .notification');
     this.frontPageLink = page.getByRole('link', { name: 'Front Page' });
-    this.logoutLink = page.getByRole('link', { name: 'Logout' });
+    this.logoutLink = page.getByRole('button', { name: 'Logout' });
   }
 
   async clickOnRooms() {

@@ -4,6 +4,7 @@ import { AuthApi } from '../../apis/AuthApi';
 import { AdminPage } from '../../pages/AdminPage';
 import { Header } from '../../pages/components/Header';
 import { RoomApi } from '../../apis/RoomApi';
+import { Messages } from '../../utils/messages';
 
 test.describe('Room Management Tests', () => {
   let adminPage: AdminPage;
@@ -66,8 +67,7 @@ test.describe('Room Management Tests', () => {
   test('User must NOT be able to create new room without filling up room name field @management @room-management', async () => {
     await roomsPage.createRoom('', RoomType.TWIN, false, 55, { wifi: true, tv: true, radio: false, refreshments: false, safe: false, views: false });
     await expect(roomsPage.errorMessages, 'Error messages are displayed').toBeVisible();
-    const errorMessage = 'Room name must be set';
-    await expect(roomsPage.errorMessages, `Error message '${errorMessage}' is displayed`).toContainText(errorMessage);
+    await expect(roomsPage.errorMessages, `Error message '${Messages.rooms.nameRequired}' is displayed`).toContainText(Messages.rooms.nameRequired);
   });
 
   test('User must NOT be able to create new room without filling up room price field @management @room-management', async () => {
@@ -80,8 +80,7 @@ test.describe('Room Management Tests', () => {
       views: false
     });
     await expect(roomsPage.errorMessages, 'Error messages are displayed').toBeVisible();
-    const errorMessage = 'must be greater than or equal to 1';
-    await expect(roomsPage.errorMessages, `Error message '${errorMessage}' is displayed`).toContainText(errorMessage);
+    await expect(roomsPage.errorMessages, `Error message '${Messages.rooms.priceTooLow}' is displayed`).toContainText(Messages.rooms.priceTooLow);
   });
 
   test('User must NOT be able to create new room with price 0 @management @room-management', async () => {
@@ -94,7 +93,6 @@ test.describe('Room Management Tests', () => {
       views: false
     });
     await expect(roomsPage.errorMessages, 'Error messages are displayed').toBeVisible();
-    const errorMessage = 'must be greater than or equal to 1';
-    await expect(roomsPage.errorMessages, `Error message '${errorMessage}' is displayed`).toContainText(errorMessage);
+    await expect(roomsPage.errorMessages, `Error message '${Messages.rooms.priceTooLow}' is displayed`).toContainText(Messages.rooms.priceTooLow);
   });
 });

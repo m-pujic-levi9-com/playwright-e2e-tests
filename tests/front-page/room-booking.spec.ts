@@ -5,6 +5,7 @@ import { FrontPage } from '../../pages/FrontPage';
 import { RoomApi } from '../../apis/RoomApi';
 import { RoomAmenities, RoomType } from '../../pages/RoomsPage';
 import { invalidEmails } from '../../utils/test-data-util';
+import { Messages } from '../../utils/messages';
 
 test.describe('Room Booking Tests', () => {
   let frontPage: FrontPage;
@@ -45,14 +46,12 @@ test.describe('Room Booking Tests', () => {
     const phoneNumber = faker.phone.number();
     await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-    const bookingSuccessMessage = 'Booking Successful!';
-    const bookingConfirmedMessage = 'Congratulations! Your booking has been confirmed';
     await expect(frontPage.bookingConfirmationModal, 'Booking Confirmation modal is displayed').toBeVisible();
-    await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${bookingSuccessMessage}' is displayed`).toContainText(
-      bookingSuccessMessage
+    await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${Messages.booking.success}' is displayed`).toContainText(
+      Messages.booking.success
     );
-    await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${bookingConfirmedMessage}' is displayed`).toContainText(
-      bookingConfirmedMessage
+    await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${Messages.booking.confirmed}' is displayed`).toContainText(
+      Messages.booking.confirmed
     );
   });
 
@@ -62,11 +61,13 @@ test.describe('Room Booking Tests', () => {
     const phoneNumber = faker.phone.number();
     await frontPage.bookRoom(roomName, '', lastName, email, phoneNumber);
 
-    const mandatoryMessage = 'Firstname should not be blank';
-    const validationMessage = 'size must be between 3 and 18';
     await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${mandatoryMessage}' is displayed`).toContainText(mandatoryMessage);
-    await expect(frontPage.bookingErrorMessages, `Validation Message '${validationMessage}' is displayed`).toContainText(validationMessage);
+    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${Messages.booking.firstNameBlank}' is displayed`).toContainText(
+      Messages.booking.firstNameBlank
+    );
+    await expect(frontPage.bookingErrorMessages, `Validation Message '${Messages.booking.firstNameSize}' is displayed`).toContainText(
+      Messages.booking.firstNameSize
+    );
   });
 
   for (const firstNameLength of [2, 19]) {
@@ -77,9 +78,10 @@ test.describe('Room Booking Tests', () => {
       const phoneNumber = faker.phone.number();
       await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-      const validationMessage = 'size must be between 3 and 18';
       await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-      await expect(frontPage.bookingErrorMessages, `Validation Message '${validationMessage}' is displayed`).toContainText(validationMessage);
+      await expect(frontPage.bookingErrorMessages, `Validation Message '${Messages.booking.firstNameSize}' is displayed`).toContainText(
+        Messages.booking.firstNameSize
+      );
     });
   }
 
@@ -91,14 +93,12 @@ test.describe('Room Booking Tests', () => {
       const phoneNumber = faker.phone.number();
       await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-      const bookingSuccessMessage = 'Booking Successful!';
-      const bookingConfirmedMessage = 'Congratulations! Your booking has been confirmed';
       await expect(frontPage.bookingConfirmationModal, 'Booking Confirmation modal is displayed').toBeVisible();
-      await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${bookingSuccessMessage}' is displayed`).toContainText(
-        bookingSuccessMessage
+      await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${Messages.booking.success}' is displayed`).toContainText(
+        Messages.booking.success
       );
-      await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${bookingConfirmedMessage}' is displayed`).toContainText(
-        bookingConfirmedMessage
+      await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${Messages.booking.confirmed}' is displayed`).toContainText(
+        Messages.booking.confirmed
       );
     });
   }
@@ -109,11 +109,13 @@ test.describe('Room Booking Tests', () => {
     const phoneNumber = faker.phone.number();
     await frontPage.bookRoom(roomName, firstName, '', email, phoneNumber);
 
-    const mandatoryMessage = 'Lastname should not be blank';
-    const validationMessage = 'size must be between 3 and 30';
     await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${mandatoryMessage}' is displayed`).toContainText(mandatoryMessage);
-    await expect(frontPage.bookingErrorMessages, `Validation Message '${validationMessage}' is displayed`).toContainText(validationMessage);
+    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${Messages.booking.lastNameBlank}' is displayed`).toContainText(
+      Messages.booking.lastNameBlank
+    );
+    await expect(frontPage.bookingErrorMessages, `Validation Message '${Messages.booking.lastNameSize}' is displayed`).toContainText(
+      Messages.booking.lastNameSize
+    );
   });
 
   for (const lastNameLength of [2, 31]) {
@@ -124,9 +126,10 @@ test.describe('Room Booking Tests', () => {
       const phoneNumber = faker.phone.number();
       await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-      const validationMessage = 'size must be between 3 and 30';
       await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-      await expect(frontPage.bookingErrorMessages, `Validation Message '${validationMessage}' is displayed`).toContainText(validationMessage);
+      await expect(frontPage.bookingErrorMessages, `Validation Message '${Messages.booking.lastNameSize}' is displayed`).toContainText(
+        Messages.booking.lastNameSize
+      );
     });
   }
 
@@ -138,14 +141,12 @@ test.describe('Room Booking Tests', () => {
       const phoneNumber = faker.phone.number();
       await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-      const bookingSuccessMessage = 'Booking Successful!';
-      const bookingConfirmedMessage = 'Congratulations! Your booking has been confirmed';
       await expect(frontPage.bookingConfirmationModal, 'Booking Confirmation modal is displayed').toBeVisible();
-      await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${bookingSuccessMessage}' is displayed`).toContainText(
-        bookingSuccessMessage
+      await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${Messages.booking.success}' is displayed`).toContainText(
+        Messages.booking.success
       );
-      await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${bookingConfirmedMessage}' is displayed`).toContainText(
-        bookingConfirmedMessage
+      await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${Messages.booking.confirmed}' is displayed`).toContainText(
+        Messages.booking.confirmed
       );
     });
   }
@@ -156,9 +157,10 @@ test.describe('Room Booking Tests', () => {
     const phoneNumber = faker.phone.number();
     await frontPage.bookRoom(roomName, firstName, lastName, '', phoneNumber);
 
-    const mandatoryMessage = 'must not be empty';
     await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${mandatoryMessage}' is displayed`).toContainText(mandatoryMessage);
+    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${Messages.booking.fieldEmpty}' is displayed`).toContainText(
+      Messages.booking.fieldEmpty
+    );
   });
 
   for (const invalidEmail of invalidEmails()) {
@@ -171,9 +173,10 @@ test.describe('Room Booking Tests', () => {
       const email = invalidEmail;
       await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-      const validationMessage = 'must be a well-formed email address';
       await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-      await expect(frontPage.bookingErrorMessages, `Validation Message '${validationMessage}' is displayed`).toContainText(validationMessage);
+      await expect(frontPage.bookingErrorMessages, `Validation Message '${Messages.booking.invalidEmail}' is displayed`).toContainText(
+        Messages.booking.invalidEmail
+      );
     });
   }
 
@@ -183,11 +186,13 @@ test.describe('Room Booking Tests', () => {
     const email = faker.internet.email();
     await frontPage.bookRoom(roomName, firstName, lastName, email, '');
 
-    const mandatoryMessage = 'must not be empty';
-    const validationMessage = 'size must be between 11 and 21';
     await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${mandatoryMessage}' is displayed`).toContainText(mandatoryMessage);
-    await expect(frontPage.bookingErrorMessages, `Validation Message '${validationMessage}' is displayed`).toContainText(validationMessage);
+    await expect(frontPage.bookingErrorMessages, `Mandatory Message '${Messages.booking.fieldEmpty}' is displayed`).toContainText(
+      Messages.booking.fieldEmpty
+    );
+    await expect(frontPage.bookingErrorMessages, `Validation Message '${Messages.booking.phoneSize}' is displayed`).toContainText(
+      Messages.booking.phoneSize
+    );
   });
 
   for (const phoneLength of [10, 22]) {
@@ -198,9 +203,10 @@ test.describe('Room Booking Tests', () => {
       const phoneNumber = faker.string.numeric(phoneLength);
       await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-      const validationMessage = 'size must be between 11 and 21';
       await expect(frontPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
-      await expect(frontPage.bookingErrorMessages, `Validation Message '${validationMessage}' is displayed`).toContainText(validationMessage);
+      await expect(frontPage.bookingErrorMessages, `Validation Message '${Messages.booking.phoneSize}' is displayed`).toContainText(
+        Messages.booking.phoneSize
+      );
     });
   }
 
@@ -212,14 +218,12 @@ test.describe('Room Booking Tests', () => {
       const phoneNumber = faker.string.numeric(phoneLength);
       await frontPage.bookRoom(roomName, firstName, lastName, email, phoneNumber);
 
-      const bookingSuccessMessage = 'Booking Successful!';
-      const bookingConfirmedMessage = 'Congratulations! Your booking has been confirmed';
       await expect(frontPage.bookingConfirmationModal, 'Booking Confirmation modal is displayed').toBeVisible();
-      await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${bookingSuccessMessage}' is displayed`).toContainText(
-        bookingSuccessMessage
+      await expect(frontPage.bookingConfirmationModal, `Booking Success Message '${Messages.booking.success}' is displayed`).toContainText(
+        Messages.booking.success
       );
-      await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${bookingConfirmedMessage}' is displayed`).toContainText(
-        bookingConfirmedMessage
+      await expect(frontPage.bookingConfirmationModal, `Booking Confirmed Message '${Messages.booking.confirmed}' is displayed`).toContainText(
+        Messages.booking.confirmed
       );
     });
   }

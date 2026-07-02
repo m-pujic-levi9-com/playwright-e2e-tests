@@ -5,7 +5,7 @@
 
 version: 2
 updates:
-# For npm packages
+  # For npm packages
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:

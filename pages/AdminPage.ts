@@ -6,18 +6,20 @@ export class AdminPage extends BasePage {
   readonly usernameField: Locator;
   readonly passwordField: Locator;
   readonly loginButton: Locator;
+  readonly alertDanger: Locator;
 
   constructor(page: Page) {
     super(page);
-    this.pageHeader = page.getByTestId('login-header');
-    this.usernameField = page.getByTestId('username');
-    this.passwordField = page.getByTestId('password');
-    this.loginButton = page.getByTestId('submit');
+    this.pageHeader = page.getByRole('heading', { name: 'Login' });
+    this.usernameField = page.locator('#username');
+    this.passwordField = page.locator('#password');
+    this.loginButton = page.locator('#doLogin');
+    this.alertDanger = page.locator('.alert-danger');
   }
 
   async goto() {
     await test.step('Go to Admin Page', async () => {
-      await this.page.goto('/#/admin');
+      await this.page.goto('/admin');
       await expect(this.pageHeader, 'Admin page loaded').toBeVisible();
     });
   }

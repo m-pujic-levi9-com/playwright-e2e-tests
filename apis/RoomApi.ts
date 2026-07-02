@@ -16,6 +16,7 @@ export class RoomApi extends BaseApi {
 
   async createRoom(roomName: string, roomType: RoomType, roomIsAccessible: boolean, roomPrice: number, roomAmenities: RoomAmenities) {
     await this.deleteAllRooms(roomName);
+
     await test.step(`Create ${roomType} Room with name '${roomName}'`, async () => {
       const response = await this.request.post(`${path}/`, {
         data: {
@@ -34,6 +35,7 @@ export class RoomApi extends BaseApi {
 
   async deleteRoom(roomId: number) {
     await this.bookingApi.deleteAllBookings(roomId);
+
     await test.step(`Delete room with id: ${roomId}`, async () => {
       const response = await this.request.delete(`${path}/${roomId}`);
       expect([202, 404], `Room with id: ${roomId} is deleted`).toContain(response.status());
