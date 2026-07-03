@@ -224,7 +224,7 @@ test.describe('Room Booking Tests', () => {
       const lastName = faker.person.lastName();
       const email = faker.internet.email();
       const phoneNumber = faker.string.numeric(phoneLength);
-      await frontPage.bookRoom(roomName);
+      await frontPage.bookRoom(roomName, fromDate, toDate);
       await reservationPage.bookRoom(firstName, lastName, email, phoneNumber);
 
       await expect(reservationPage.bookingErrorMessages, 'Error Messages are displayed').toBeVisible();
@@ -243,7 +243,7 @@ test.describe('Room Booking Tests', () => {
       const lastName = faker.person.lastName();
       const email = faker.internet.email();
       const phoneNumber = faker.string.numeric(phoneLength);
-      await frontPage.bookRoom(roomName);
+      await frontPage.bookRoom(roomName, fromDate, toDate);
       await reservationPage.bookRoom(firstName, lastName, email, phoneNumber);
 
       await expect(reservationPage.bookingConfirmation, 'Booking Confirmation is displayed').toBeVisible();
