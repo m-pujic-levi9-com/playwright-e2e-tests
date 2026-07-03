@@ -18,8 +18,7 @@ test.describe('Room Booking Tests', () => {
     views: faker.datatype.boolean()
   };
 
-  test.beforeEach(async ({ frontPage, baseURL, roomApi }) => {
-    await frontPage.hideBanner(baseURL);
+  test.beforeEach(async ({ frontPage, roomApi }) => {
     await roomApi.createRoom(roomName, roomType, roomIsAccessible, roomPrice, roomAmenities);
 
     await frontPage.goto();

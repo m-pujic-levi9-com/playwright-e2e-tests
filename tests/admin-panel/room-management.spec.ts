@@ -3,8 +3,7 @@ import { RoomAmenities, getRoomDetailsFromAmenities, RoomType } from '../../page
 import { Messages } from '../../utils/messages';
 
 test.describe('Room Management Tests', () => {
-  test.beforeEach(async ({ adminPage, header, baseURL, adminUsername, adminPassword }) => {
-    await adminPage.hideBanner(baseURL);
+  test.beforeEach(async ({ adminPage, header, adminUsername, adminPassword }) => {
     await adminPage.goto();
     await adminPage.login(adminUsername, adminPassword);
     await expect(header.logoutLink, 'Administrator is logged in').toBeVisible();

@@ -4,8 +4,7 @@ import { invalidEmails } from '../../utils/test-data-util';
 import { Messages } from '../../utils/messages';
 
 test.describe('Contact Hotel Tests', () => {
-  test.beforeEach(async ({ frontPage, baseURL }) => {
-    await frontPage.hideBanner(baseURL);
+  test.beforeEach(async ({ frontPage }) => {
     await frontPage.goto();
   });
 

@@ -2,8 +2,7 @@ import { test, expect } from '../../fixtures/fixtures';
 import { Messages } from '../../utils/messages';
 
 test.describe('Login Tests', () => {
-  test.beforeEach(async ({ adminPage, baseURL }) => {
-    await adminPage.hideBanner(baseURL);
+  test.beforeEach(async ({ adminPage }) => {
     await adminPage.goto();
   });
 
