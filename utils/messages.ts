@@ -7,8 +7,8 @@ export const Messages = {
     priceTooLow: 'must be greater than or equal to 1'
   },
   booking: {
-    success: 'Booking Successful!',
-    confirmed: 'Congratulations! Your booking has been confirmed',
+    success: 'Booking Confirmed',
+    confirmed: 'Your booking has been confirmed for the following dates:',
     firstNameBlank: 'Firstname should not be blank',
     firstNameSize: 'size must be between 3 and 18',
     lastNameBlank: 'Lastname should not be blank',
