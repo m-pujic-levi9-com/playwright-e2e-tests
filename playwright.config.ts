@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 import { defineConfig, devices } from '@playwright/test';
+import type { CredentialOptions } from './fixtures/credentials';
 
 /**
  * Read environment variables from file.
@@ -12,7 +13,6 @@ function getBaseUrl() {
   if (environment == undefined || environment == null) return 'https://automationintesting.online/';
   else if (environment == 'prod') return 'https://automationintesting.online/';
   else if (environment == 'local') return 'http://localhost';
-  else if (environment == 'kubeLocal') return 'http://kube.local';
   else if (environment == 'docker') return 'http://rbp-proxy';
   else return 'https://automationintesting.online/';
 }
@@ -20,7 +20,7 @@ function getBaseUrl() {
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+export default defineConfig<CredentialOptions>({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -105,7 +105,10 @@ export default defineConfig({
     /* Run browser in headless mode. */
     headless: true,
     /* Change the default data-testid attribute. */
-    testIdAttribute: 'data-testid'
+    testIdAttribute: 'data-testid',
+    /* Admin Credentials */
+    adminUsername: 'admin',
+    adminPassword: 'password'
   },
 
   /* Configure projects for major browsers */

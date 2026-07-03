@@ -19,7 +19,7 @@ jobs:
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v3.1.0
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
       # Here the PR gets approved.
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"

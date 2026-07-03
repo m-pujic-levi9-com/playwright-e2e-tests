@@ -1,4 +1,22 @@
-import { RoomType } from '../pages/RoomsPage';
+import { faker } from '@faker-js/faker';
+import { RoomAmenities, RoomType } from '../pages/RoomsPage';
+
+export function generateRoomData() {
+  return {
+    roomName: faker.number.int({ min: 100, max: 999 }).toString(),
+    roomType: faker.helpers.arrayElement([RoomType.SINGLE, RoomType.TWIN, RoomType.DOUBLE, RoomType.FAMILY, RoomType.SUITE]),
+    roomIsAccessible: faker.datatype.boolean(),
+    roomPrice: faker.number.int({ min: 100, max: 999 }),
+    roomAmenities: {
+      wifi: faker.datatype.boolean(),
+      tv: faker.datatype.boolean(),
+      radio: faker.datatype.boolean(),
+      refreshments: faker.datatype.boolean(),
+      safe: faker.datatype.boolean(),
+      views: faker.datatype.boolean()
+    } as RoomAmenities
+  };
+}
 
 export function invalidEmails() {
   return [

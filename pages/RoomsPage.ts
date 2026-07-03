@@ -33,7 +33,7 @@ export class RoomsPage extends BasePage {
 
   async goto() {
     await test.step('Go to Rooms Page', async () => {
-      await this.page.goto('/#/admin');
+      await this.page.goto('/admin');
     });
   }
 

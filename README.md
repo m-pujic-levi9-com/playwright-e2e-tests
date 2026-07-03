@@ -39,12 +39,10 @@ Open the terminal inside `<local_path>\playwright-e2e-tests` and use the followi
 - Open the Playwright UI to execute test cases against default environment: `npx playwright test --ui`
 - Execute all test cases without opening the Playwright UI against default environment: `npx playwright test`
 - Environment variables:
-  - `ENV`, which can have value `prod` / `local` / `docker` / `kube` / `kubeLocal` , depending on which environment you would like to execute your tests (if not defined, `prod` will be used by default)
+  - `ENV`, which can have value `prod` / `local` / `docker`, depending on which environment you would like to execute your tests (if not defined, `prod` will be used by default)
     - `prod` uses `https://automationintesting.online` as app URL
     - `local` uses `http://localhost` as app URL
-    - `kubeLocal` uses `http://kube.local` as app URL
     - `docker` uses `http://rbp-proxy` as app URL
-    - `kube` uses `http://rbp-proxy.restful-booker-platform` as app URL
 - Test filtering using Tags:
   - If not set all tests will be executed. Filtering tests using Tags is done with `--grep` and `--grep-invert` command line flags
     - `npx playwright test --grep "@sanity"` - Tests tagged with `@sanity` will be filtered
@@ -66,37 +64,14 @@ Example of above commands with possible variables:
 >
 >- [Docker Desktop for Windows](https://docs.docker.com/desktop/install/windows-install/)
 >- [Docker Desktop for Mac](https://docs.docker.com/desktop/install/mac-install/)
->
-> As Docker for Desktop is **paid** software now, instead of it you can set up and start minikube using bellow guides:
->
->- [Minikube Setup for Windows](/docs/minikube-setup-windows.md)
->- [Minikube Setup for Mac](/docs/minikube-setup-mac.md)
 
 After Docker has been installed on your machine, open the terminal inside `<local_path>\playwright-e2e-tests` and use the following command:
 
-    docker compose -f ./docker-compose-restful-booker.yml up -d 
+    docker compose -f ./docker-compose.restful-booker.yml up -d 
 
 That will start Restful Booker Platform locally.
 
-After everything is up and running you will have Restful Booker Platform available at:
-
-- Docker for Desktop: `http://localhost`
-- minikube: `http://kube.local`
-
-## Local Kubernetes Environment with Minikube's Kubernetes
-
-> Before you proceed, you should set up and start minikube using bellow guides:
->
->- [Minikube Setup for Windows](/docs/minikube-setup-windows.md)
->- [Minikube Setup for Mac](/docs/minikube-setup-mac.md)
-
-After minikube has been properly installed and started on your machine, open the terminal inside `<local_path>\playwright-e2e-tests` and use the following command:
-
-    kubectl apply -f .kube/restful-booker-platform.yml 
-
-That will start Restful Booker Platform locally.
-
-After everything is up and running you will have Restful Booker Platform available at `http://kube.local`.
+After everything is up and running you will have Restful Booker Platform available at `http://localhost`.
 
 ## Execute Playwright E2E Tests using GitHub Actions Workflows on GitHub
 

@@ -7,6 +7,8 @@
 /playwright-all-blob-reports/
 /playwright-allure-results/
 /playwright-allure-report/
+/.playwright-mcp
+
 # Compiled output
 /dist
 /node_modules

@@ -1,7 +1,7 @@
 import { test, expect, APIRequestContext } from '@playwright/test';
 import { BaseApi } from './BaseApi';
 
-const path = '/booking';
+const path = '/api/booking';
 
 export class BookingApi extends BaseApi {
   constructor(request: APIRequestContext) {
@@ -18,8 +18,8 @@ export class BookingApi extends BaseApi {
   async deleteAllBookings(roomId: number) {
     await test.step(`Delete all Bookings for room id: ${roomId}`, async () => {
       const response = await this.request.get(`${path}/?roomid=${roomId}`);
-      expect(response.status(), `All Bookings for room id: ${roomId} are fetched`).toBe(200);
-      const data = JSON.parse(await response.text());
+      expect(response.ok(), `All Bookings for room id: ${roomId} are fetched`).toBeTruthy();
+      const data = await this.getJson<{ bookings: { bookingid: number }[] }>(response);
       for (const booking of data.bookings) await this.deleteBooking(booking.bookingid);
     });
   }
