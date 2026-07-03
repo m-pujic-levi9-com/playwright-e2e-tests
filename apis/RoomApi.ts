@@ -33,6 +33,15 @@ export class RoomApi extends BaseApi {
     });
   }
 
+  async getRoomIdByName(roomName: string): Promise<number> {
+    return await test.step(`Get room id for room with name '${roomName}'`, async () => {
+      const allRooms = await this.getAllRooms();
+      const room = allRooms.find((currentRoom) => currentRoom.roomName === roomName);
+      expect(room, `Room with name '${roomName}' exists`).toBeTruthy();
+      return room!.roomid;
+    });
+  }
+
   async deleteRoom(roomId: number) {
     await this.bookingApi.deleteAllBookings(roomId);
 
@@ -42,11 +51,21 @@ export class RoomApi extends BaseApi {
     });
   }
 
+  async getAllRooms(checkin?: string, checkout?: string) {
+    const response = await this.request.get(`${path}/`, {
+      params: {
+        ...(checkin && { checkin }),
+        ...(checkout && { checkout })
+      }
+    });
+    expect(response.ok(), 'All rooms are fetched').toBeTruthy();
+    const { rooms } = await this.getJson<{ rooms: { roomid: number; roomName: string }[] }>(response);
+    return rooms;
+  }
+
   async deleteAllRooms(roomName: string) {
     await test.step(`Delete all rooms with name: '${roomName}'`, async () => {
-      const getRoomsResponse = await this.request.get(`${path}/`);
-      expect(getRoomsResponse.ok(), 'All rooms are fetched').toBeTruthy();
-      const { rooms: allRooms } = await this.getJson<{ rooms: { roomid: number; roomName: string }[] }>(getRoomsResponse);
+      const allRooms = await this.getAllRooms();
       const filteredRoomsByName = allRooms.filter((room) => room.roomName == roomName);
       for (const room of filteredRoomsByName) await this.deleteRoom(room.roomid);
     });

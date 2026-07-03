@@ -4,10 +4,6 @@ import { BasePage } from './BasePage';
 export class FrontPage extends BasePage {
   readonly pageLocator: Locator;
 
-  readonly checkInDateField: Locator;
-  readonly checkOutDateField: Locator;
-  readonly checkAvailabilityButton: Locator;
-
   readonly contactNameField: Locator;
   readonly contactEmailField: Locator;
   readonly contactPhoneField: Locator;
@@ -20,10 +16,6 @@ export class FrontPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.pageLocator = page.getByText('Our Rooms', { exact: true });
-
-    this.checkInDateField = page.locator('//div[./label[@for="checkin"]]//input');
-    this.checkOutDateField = page.locator('//div[./label[@for="checkout"]]//input');
-    this.checkAvailabilityButton = page.getByRole('button', { name: 'Check Availability' });
 
     this.contactNameField = page.getByTestId('ContactName');
     this.contactEmailField = page.getByTestId('ContactEmail');
@@ -50,34 +42,6 @@ export class FrontPage extends BasePage {
       await this.contactSubjectField.fill(subject);
       await this.contactDescriptionField.fill(description);
       await this.contactSubmitButton.click();
-    });
-  }
-
-  async checkAvailability(fromDate: string, toDate: string) {
-    await test.step('Check Availability', async () => {
-      await this.checkInDateField.fill(fromDate);
-      await this.checkOutDateField.fill(toDate);
-      await this.checkAvailabilityButton.click();
-    });
-  }
-
-  getRoomCard(roomName: string): Locator {
-    return this.page.locator(`//div[./div[@class='card-body']/*[contains(text(),'${roomName}')]]`);
-  }
-
-  async clickBookNowButton(roomName: string) {
-    await test.step(`Click on Book now button for Room named '${roomName}'`, async () => {
-      const roomCard = this.getRoomCard(roomName);
-      await roomCard.locator('//a[.="Book now"]').click();
-    });
-  }
-
-  async bookRoom(roomName: string, fromDate: string, toDate: string) {
-    await test.step(`Book a Room '${roomName}'`, async () => {
-      await this.checkAvailability(fromDate, toDate);
-      const roomCard = this.getRoomCard(roomName);
-      await expect(roomCard, `Room '${roomName}' is displayed`).toBeVisible();
-      await this.clickBookNowButton(roomName);
     });
   }
 }

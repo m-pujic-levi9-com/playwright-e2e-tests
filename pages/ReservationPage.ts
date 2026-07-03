@@ -27,6 +27,15 @@ export class ReservationPage extends BasePage {
     this.bookingErrorMessages = page.locator('.alert.alert-danger');
   }
 
+  async goto(roomId: string, checkInDate: Date, checkOutDate: Date) {
+    await test.step('Go to Reservation Page', async () => {
+      await this.page.goto(
+        `/reservation/${roomId}?checkin=${checkInDate.toISOString().split('T')[0]}&checkout=${checkOutDate.toISOString().split('T')[0]}`
+      );
+      await this.pageLocator.waitFor({ state: 'visible' });
+    });
+  }
+
   async clickReserveNow() {
     await test.step('Click Reserve Now button', async () => {
       await this.reserveNowButton.click();
