@@ -42,7 +42,7 @@
     "eslint-plugin-promise": "^7.3.0",
     "globals": "^17.7.0",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.8",
+    "lint-staged": "^17.1.0",
     "monocart-reporter": "^2.12.2",
     "prettier": "^3.9.5",
     "rimraf": "^6.1.3",
