@@ -18,7 +18,7 @@ Provided tests are based on examples how to define and use utility functions, ex
 - Clone the repository to your local system
 - Open the project in Visual Studio Code and open the terminal
   - Make sure the path to the project is correct `<local_path>\playwright-e2e-tests`
-- In the terminal, execute the following command: ```npm install```
+- In the terminal, execute the following command: ```npm install --legacy-peer-deps```
   - The command will install all found in the package.json
 
 ## Used Libraries
