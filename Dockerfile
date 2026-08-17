@@ -21,7 +21,7 @@ COPY tests/ /app/tests/
 ENV CI=1
 
 # Install dependencies
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Install Playwright Browsers
 RUN npx playwright install --with-deps
