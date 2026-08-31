@@ -31,7 +31,7 @@
     "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.2.0",
-    "@typescript-eslint/eslint-plugin": "^8.67.0",
+    "@typescript-eslint/eslint-plugin": "^8.68.0",
     "@typescript-eslint/parser": "^8.68.0",
     "allure-commandline": "^2.43.0",
     "allure-playwright": "^3.11.0",
