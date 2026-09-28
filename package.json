@@ -33,7 +33,7 @@
     "@types/node": "^26.6.2",
     "@typescript-eslint/eslint-plugin": "^8.70.0",
     "@typescript-eslint/parser": "^8.70.0",
-    "allure-commandline": "^2.43.0",
+    "allure-commandline": "^2.46.1",
     "allure-playwright": "^3.12.2",
     "eslint": "^10.9.1",
     "eslint-config-prettier": "^10.1.8",
