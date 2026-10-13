@@ -13,7 +13,6 @@ function getBaseUrl() {
   if (environment == undefined || environment == null) return 'https://automationintesting.online/';
   else if (environment == 'prod') return 'https://automationintesting.online/';
   else if (environment == 'local') return 'http://localhost';
-  else if (environment == 'docker') return 'http://rbp-proxy';
   else return 'https://automationintesting.online/';
 }
 
