@@ -18,6 +18,17 @@ export function generateRoomData() {
   };
 }
 
+export function toIsoDate(date: Date) {
+  return date.toLocaleDateString('en-GB');
+}
+
+export function sanitizeName(name: string) {
+  return name
+    .replace(/[^a-zA-Z& ]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export function invalidEmails() {
   return [
     'plainaddress',

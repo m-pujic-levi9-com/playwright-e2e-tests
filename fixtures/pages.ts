@@ -1,5 +1,6 @@
 import { test as base } from '@playwright/test';
 import { AdminPage } from '../pages/AdminPage';
+import { BrandingPage } from '../pages/BrandingPage';
 import { FrontPage } from '../pages/FrontPage';
 import { ReservationPage } from '../pages/ReservationPage';
 import { RoomsPage } from '../pages/RoomsPage';
@@ -7,6 +8,7 @@ import { Header } from '../pages/components/Header';
 
 type PageFixtures = {
   adminPage: AdminPage;
+  brandingPage: BrandingPage;
   frontPage: FrontPage;
   reservationPage: ReservationPage;
   roomsPage: RoomsPage;
@@ -16,6 +18,9 @@ type PageFixtures = {
 export const test = base.extend<PageFixtures>({
   adminPage: async ({ page }, use) => {
     await use(new AdminPage(page));
+  },
+  brandingPage: async ({ page }, use) => {
+    await use(new BrandingPage(page));
   },
   frontPage: async ({ page }, use) => {
     await use(new FrontPage(page));

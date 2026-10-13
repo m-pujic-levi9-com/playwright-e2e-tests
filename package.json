@@ -11,6 +11,7 @@
     "types-check": "tsc -p tsconfig.json --noEmit",
     "types-check:watch": "tsc -p tsconfig.json --noEmit -w",
     "pw:install": "playwright install",
+    "pw:install:deps": "playwright install --with-deps",
     "pw:ui": "playwright test --ui",
     "test:sanity": "playwright test --grep @sanity",
     "test:changed": "playwright test --only-changed=main",
@@ -19,8 +20,7 @@
     "allure:generate": "allure generate playwright-allure-results -o playwright-allure-report --clean",
     "allure:open": "allure open playwright-allure-report",
     "merge:report:playwright": "tsx merge-playwright-reports.ts",
-    "merge:report:monocart": "tsx merge-monocart-reports.ts",
-    "update:playwright": "playwright install --with-deps"
+    "merge:report:monocart": "tsx merge-monocart-reports.ts"
   },
   "keywords": [],
   "author": "",
@@ -33,6 +33,7 @@
     "@types/node": "^26.6.5",
     "@typescript-eslint/eslint-plugin": "^8.71.1",
     "@typescript-eslint/parser": "^8.71.1",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "allure-commandline": "^2.46.1",
     "allure-playwright": "^3.12.2",
     "eslint": "^10.12.0",
@@ -47,6 +48,6 @@
     "prettier": "^3.9.8",
     "rimraf": "^6.1.3",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   }
 }

@@ -1,5 +1,6 @@
 import { test, Page, Locator } from '@playwright/test';
 import { BasePage } from './BasePage';
+import { toIsoDate } from '../utils/test-data-util';
 
 export class ReservationPage extends BasePage {
   readonly pageLocator: Locator;
@@ -29,9 +30,7 @@ export class ReservationPage extends BasePage {
 
   async goto(roomId: string, checkInDate: Date, checkOutDate: Date) {
     await test.step('Go to Reservation Page', async () => {
-      await this.page.goto(
-        `/reservation/${roomId}?checkin=${checkInDate.toISOString().split('T')[0]}&checkout=${checkOutDate.toISOString().split('T')[0]}`
-      );
+      await this.page.goto(`/reservation/${roomId}?checkin=${toIsoDate(checkInDate)}&checkout=${toIsoDate(checkOutDate)}`);
       await this.pageLocator.waitFor({ state: 'visible' });
     });
   }

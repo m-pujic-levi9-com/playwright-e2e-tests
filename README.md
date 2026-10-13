@@ -12,8 +12,6 @@ Provided tests are based on examples how to define and use utility functions, ex
     - [ESLint](<https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>)
     - [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
     - [Local History](https://marketplace.visualstudio.com/items?itemName=xyz.local-history)
-    - [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
-    - [Markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint)
 - Install [Node JS](https://nodejs.org/en/download/)
 - Clone the repository to your local system
 - Open the project in Visual Studio Code and open the terminal
@@ -46,7 +44,7 @@ Open the terminal inside `<local_path>\playwright-e2e-tests` and use the followi
 - Test filtering using Tags:
   - If not set all tests will be executed. Filtering tests using Tags is done with `--grep` and `--grep-invert` command line flags
     - `npx playwright test --grep "@sanity"` - Tests tagged with `@sanity` will be filtered
-    - `npx playwright test --grep-invert "@room-management"` - Tests that are not tagged with `@room-management` will be filtered
+    - `npx playwright test --grep-invert "@slow"` - Tests not tagged with `@slow` will be filtered
     - `npx playwright test --grep "(?=.*@management)(?=.*@room-management)"` - Tests tagged with both `@management` and `@room-management` will be filtered
     - `npx playwright test --grep "@booking|@contact"` - Tests tagged with either `@booking` or `@contact` will be filtered
 
@@ -89,7 +87,7 @@ There are 3 GitHub Actions Workflows setup for Playwright E2E Tests repository:
 
 ### Playwright Tests  
 
-This workflow is designed to run comprehensive automated tests using Playwright across multiple browsers. It Executes All Playwright E2E Tests on `local` environment using `chromium`, `firefox` and `webkit` browsers from defined branch (by default it is `main`). It includes parallel test execution, detailed reporting, and scheduled runs to maintain the reliability.  
+This workflow is designed to run comprehensive automated tests using Playwright across multiple browsers. It executes all Playwright E2E tests, including `@slow` tests, on the `local` environment using `chromium`, `firefox` and `webkit` browsers. It includes parallel test execution, detailed reporting, and scheduled runs to maintain reliability.  
 
 Status of all ongoing and previously executed `Playwright Tests` Workflow runs can be found [here](https://github.com/m-pujic-levi9-com/playwright-e2e-tests/actions/workflows/playwright.yml).
 
@@ -180,7 +178,7 @@ GitHub Action Workflow configuration file of this workflow is [check-sanity.yml]
   - Deploys multiple Docker-based microservices to emulate the testing environment, ensuring tests run against a realistic backend setup.
 
 - **Test Execution**:
-  - Leverages Playwright to execute tests marked with the `@sanity` tag.
+  - Leverages Playwright to execute tests marked with the `@sanity` tag, excluding tests marked with `@slow`.
   - Ensures essential application flows are thoroughly verified.
 
 - **Reports**:
@@ -225,7 +223,7 @@ GitHub Action Workflow configuration file of this workflow is [check-changes.yml
   - Deploys multiple Docker-based microservices to emulate the testing environment, ensuring tests run against a realistic backend setup.
 
 - **Test Execution**:
-  - Leverages Playwright's `--only-changed` option to execute only the tests impacted by code changes, improving feedback time and reducing resource usage.
+  - Leverages Playwright's `--only-changed` option to execute only the tests impacted by code changes, excluding tests marked with `@slow` to reduce feedback time and resource usage.
 
 - **Reports**:
   - Automatically generates and uploads an HTML report for Playwright test results, which can be accessed and reviewed directly from the workflow artifacts.

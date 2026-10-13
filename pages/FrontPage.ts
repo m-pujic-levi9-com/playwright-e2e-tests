@@ -3,6 +3,14 @@ import { BasePage } from './BasePage';
 
 export class FrontPage extends BasePage {
   readonly pageLocator: Locator;
+  readonly hero: Locator;
+  readonly navigationBrandName: Locator;
+  readonly brandName: Locator;
+  readonly brandDescription: Locator;
+  readonly addressDetails: Locator;
+  readonly contactPhone: Locator;
+  readonly contactEmail: Locator;
+  readonly directions: Locator;
 
   readonly contactNameField: Locator;
   readonly contactEmailField: Locator;
@@ -16,6 +24,14 @@ export class FrontPage extends BasePage {
   constructor(page: Page) {
     super(page);
     this.pageLocator = page.getByText('Our Rooms', { exact: true });
+    this.hero = page.locator('section.hero');
+    this.navigationBrandName = page.locator('nav a.navbar-brand');
+    this.brandName = this.hero.getByRole('heading', { level: 1 });
+    this.brandDescription = this.hero.locator('p').first();
+    this.addressDetails = page.getByRole('heading', { name: 'Address' }).locator('..').locator('p');
+    this.contactPhone = page.getByRole('heading', { name: 'Phone' }).locator('..').locator('p');
+    this.contactEmail = page.getByRole('heading', { name: 'Email' }).locator('..').locator('p');
+    this.directions = page.getByRole('heading', { name: 'Getting Here' }).locator('xpath=following-sibling::p[1]');
 
     this.contactNameField = page.getByTestId('ContactName');
     this.contactEmailField = page.getByTestId('ContactEmail');
@@ -27,9 +43,9 @@ export class FrontPage extends BasePage {
     this.contactErrorMessages = page.locator('#contact div.alert.alert-danger');
   }
 
-  async goto() {
+  async goto(cacheBust = false) {
     await test.step('Go to Front Page', async () => {
-      await this.page.goto('/');
+      await this.page.goto(cacheBust ? `/?branding=${Date.now()}` : '/');
       await expect(this.pageLocator, 'Front Page loaded').toBeVisible();
     });
   }
@@ -43,5 +59,14 @@ export class FrontPage extends BasePage {
       await this.contactDescriptionField.fill(description);
       await this.contactSubmitButton.click();
     });
+  }
+
+  mapTile(latitude: number, longitude: number) {
+    const zoom = 17;
+    const scale = 2 ** zoom;
+    const latitudeRadians = (latitude * Math.PI) / 180;
+    const tileX = Math.floor(((longitude + 180) / 360) * scale);
+    const tileY = Math.floor(((1 - Math.asinh(Math.tan(latitudeRadians)) / Math.PI) / 2) * scale);
+    return this.page.locator(`img[src*="/${zoom}/${tileX}/${tileY}.png"]`);
   }
 }
