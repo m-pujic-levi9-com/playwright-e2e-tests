@@ -49,20 +49,22 @@ The project supports multiple environments via the `ENV` variable:
 
 - `prod` → `https://automationintesting.online/`
 - `local` → `http://localhost`
-- `docker` → `http://rbp-proxy`
 
-Default behavior is production when `ENV` is unset.
+The test configuration defaults to production when `ENV` is unset.
+Never rely on that default when running tests: ask the user whether to run against production or local, and use local only when it is up and running. 
+If local is unavailable, tell the user and ask whether to use production or start the local environment. Set `ENV` explicitly for the selected environment.
 
 ## Agent workflow for this repo
 
 When asked to work on an issue or feature:
 
 1. Inspect the relevant test and page object files first.
-2. Reproduce the failure or confirm the UI flow using the smallest possible Playwright command.
-3. Prefer a focused fix in the correct layer: test, page object, API helper, or fixture.
-4. Use `playwright-cli` for live browser validation and debugging when the problem is UI/state-related.
-5. Validate with the narrowest meaningful Playwright test command.
-6. Run a TypeScript check when code changes affect shared abstractions.
+2. Before running environment-backed tests or browser validation, ask the user whether to use production or local; offer local only if it is up and running. Never assume production.
+3. Reproduce the failure or confirm the UI flow using the smallest possible Playwright command and set `ENV` explicitly to the user's choice.
+4. Prefer a focused fix in the correct layer: test, page object, API helper, or fixture.
+5. Use `playwright-cli` for live browser validation and debugging when the problem is UI/state-related.
+6. Validate with the narrowest meaningful Playwright test command.
+7. Run a TypeScript check when code changes affect shared abstractions.
 
 ## Validation expectations
 
@@ -91,6 +93,10 @@ Use these questions to guide diagnosis:
 - Separate business flow logic from data generation and low-level browser actions.
 - Prefer small, explicit helper methods in page objects over duplicated code in tests.
 - Keep tests readable, named clearly, and scoped to a single behavior.
+- Add a functionality tag to every newly generated test, appended to its title like the existing tests.
+- Before choosing a functionality tag, search the existing tests and reuse the tag that best matches the behavior. If no existing tag fits, introduce a concise, descriptive tag. If the right tag is uncertain, ask the user what tag name to use before adding one.
+- Never add `@sanity` unless the user explicitly approves adding it; user approval is required for every `@sanity` tag.
+- Add `@slow` when a test uses an explicit timeout of 30 seconds or more, or when it is known or observed to take longer than one minute.
 
 ## When to use Playwright Test vs playwright-cli
 
