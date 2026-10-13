@@ -37,10 +37,9 @@ Open the terminal inside `<local_path>\playwright-e2e-tests` and use the followi
 - Open the Playwright UI to execute test cases against default environment: `npx playwright test --ui`
 - Execute all test cases without opening the Playwright UI against default environment: `npx playwright test`
 - Environment variables:
-  - `ENV`, which can have value `prod` / `local` / `docker`, depending on which environment you would like to execute your tests (if not defined, `prod` will be used by default)
+  - `ENV`, which can have value `prod` or `local`, depending on which environment you would like to execute your tests (if not defined, `prod` will be used by default)
     - `prod` uses `https://automationintesting.online` as app URL
     - `local` uses `http://localhost` as app URL
-    - `docker` uses `http://rbp-proxy` as app URL
 - Test filtering using Tags:
   - If not set all tests will be executed. Filtering tests using Tags is done with `--grep` and `--grep-invert` command line flags
     - `npx playwright test --grep "@sanity"` - Tests tagged with `@sanity` will be filtered
